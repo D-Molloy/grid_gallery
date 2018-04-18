@@ -1,0 +1,153 @@
+/* font-family: 'Dosis', sans-serif;
+font-family: 'Open Sans', sans-serif; */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    padding: 50px;
+    font-family: sans-serif;
+    background: linear-gradient(to bottom, #9ad3de
+, #3c6c81);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0 0 5px 0;
+}
+#title-main {
+    font-family: 'Dosis', sans-serif;
+}
+
+#title-sub {
+    font-family: 'Open Sans', sans-serif;
+}
+
+p {
+    margin: 0 0 20px 0;
+}
+
+.close {
+    background: none;
+    color: white;
+    border: 0;
+    color: black;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 100px);
+    /* because we don't know how many rows there will be, we use grid-auto-rows and make each implicitly created row 100px tall */
+    grid-auto-rows: 100px;
+    /* in order to fill in the empty gaps in our grid we use grid-auto-flow dense */
+    grid-auto-flow: dense;
+}
+
+.item {
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1;
+    grid-template-rows: 1; 
+    margin: 3px;
+}
+
+/* these rules are used to make sure the image appears correctly */
+.item img {
+    grid-column: 1/-1;
+    grid-row: 1/-1;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    /* To prevent images from being stretched, use object-fit: cover; or other value- contain*/
+    object-fit: cover;
+
+}
+
+.item__overlay {
+    /* #rrggbbaa - the aa makes it tranparent (80% transparent in this case) */
+    background: #c9c9c980 ;   
+    grid-column: 1/-1;
+    grid-row: 1/-1; 
+    position: relative;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    /* this is what makes it move */
+    transition: .3s;
+    transform: translateY(100%);
+}
+
+.item__overlay button{
+    background: none;
+    border: 2px solid white;
+    color: white;
+    text-transform: uppercase;
+    background: rgba(0, 0, 0, 0.363);
+    padding: 5px;
+}
+
+.item:hover .item__overlay {
+    transform: translateY(0);
+
+   
+}
+
+/* the default is 1x1, so now we need to define the rules for the vert and horz span classes generated in out javascript */
+
+.item.v2 {
+    grid-row: span 2;
+}
+
+.item.v3 {
+    grid-row: span 3;
+}
+
+.item.v4 {
+    grid-row: span 4;
+}
+
+.item.h2 {
+    grid-column: span 2;
+}
+
+.item.h3 {
+    grid-column: span 3;
+}
+
+.item.h4 {
+    grid-column: span 4;
+}
+
+
+
+.overlay {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.7);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: none;
+    z-index: 2;
+}
+
+.overlay.open {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
+.overlay .overlay-inner {
+    background: white;
+    width: 700px;
+    padding: 20px;
+}
+
+.overlay img {
+    width: 100%;
+}
